@@ -17,18 +17,18 @@ VCF        = vcf
 ## Workflow
 
 indexed = $(addsuffix .bwt, $(GENOMES)/$(REF).fna )
-bam    = $(addprefix $(ALIGNMENTS)/$(REF)_, $(addsuffix .bam, $(STRAINS) ) )
-vcf    = $(addprefix $(VCF)/$(REF)_, $(addsuffix .vcf, $(STRAINS) ) )
-sites  = $(addprefix $(VCF)/$(REF)_, $(addsuffix .all.vcf.gz, $(STRAINS) ) )
-contig = $(addprefix $(ASSEMBLIES)/, $(STRAINS) )
-rings  = $(addprefix $(CIRCOS)/$(REF)_, $(addsuffix .txt, $(STRAINS) ) )
+bam     = $(addprefix $(ALIGNMENTS)/$(REF)_, $(addsuffix .bam, $(STRAINS) ) )
+vcf     = $(addprefix $(VCF)/$(REF)_, $(addsuffix .vcf, $(STRAINS) ) )
+sites   = $(addprefix $(VCF)/$(REF)_, $(addsuffix .all.vcf.gz, $(STRAINS) ) )
+contigs = $(addprefix $(ASSEMBLIES)/, $(STRAINS) )
+rings   = $(addprefix $(CIRCOS)/$(REF)_, $(addsuffix .txt, $(STRAINS) ) )
 
 all: index alignments sites trees
 index: $(indexed)
 alignments: $(bam)
 sites: $(sites)
 snps: $(vcf)
-assemblies: $(contig)
+assemblies: $(contigs)
 
 circosrings: $(rings)
 
