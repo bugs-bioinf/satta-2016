@@ -2,3 +2,4 @@
 *
 # Except this file
 !.gitignore
+!NC_000962.conf

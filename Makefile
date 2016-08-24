@@ -13,6 +13,7 @@ DATA       = data
 VCF        = vcf
 
 ## exe locations
+CIRCOSPATH = ~/Tools/circos-0.62-1/bin
 
 ## Workflow
 
@@ -114,7 +115,7 @@ $(CIRCOS)/$(REF)_%.txt:
 	perl scripts/circos_bam_track.pl --bam $(ALIGNMENTS)/$(REF)_$*.bam --verbose --window 100 > $@
 
 $(CIRCOS)/$(REF).png: $(CIRCOS)/$(REF).karyotype.txt $(CIRCOS)/$(REF).genes.for.txt $(CIRCOS)/$(REF).genes.rev.txt $(rings)
-	cd $(CIRCOS); ~/Tools/circos-0.62-1/bin/circos -outputfile $(REF).png --conf $(REF).conf
+	cd $(CIRCOS); $(CIRCOSPATH)/circos -outputfile $(REF).png --conf $(REF).conf
 
 circos: $(CIRCOS)/$(REF).png
 
