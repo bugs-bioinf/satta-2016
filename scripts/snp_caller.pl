@@ -49,7 +49,7 @@ GetOptions(
  $dpmax_cutoff ||=  100000;
  $dp4_cutoff   ||=  0;
  $af_cutoff    ||=  0;
- $mq_cutoff    ||=  0;
+ $mq_cutoff    ||=  30;
  $showfiltered ||=  0;
  $phylip       ||=  0;
  $outdir       ||=  './';
@@ -751,14 +751,13 @@ __END__
 
 =head1 NAME
 
-filter_vcf.pl - Filters VCF file based on various criteria
+snp_caller.pl - Filters VCF file based on various criteria, to generate input file for phylogenetic reconstruction
 
 =head1 SYNOPSIS
 
-filter_vcf.pl --vcf vcffile --chrom NC_009777
+snp_caller.pl --vcf vcffile --chrom NC_000962.3
 
-filter_vcf.pl --vcf vcffile1 --vcf vcffile2 --chrom NC_009777 --qual 30 --dp4 75 --dp 10 --dpmax 100 -af 0.75 --showfiltered --noindels --noheader --phylip 
-	              --ignorefile Mobiles.txt --verbose 1
+snp_caller.pl --chrom NC_000962.3 --qual 30 --dp 4 --dp4 75 --dpmax 5000 --af 1 --mq 30 --noindels --noheader --vcf vcffile1 --vcf vcffile2 --dir phylogeny/ --phylip NC_000962.b1.infile --verbose 1 -b 1 --cpus 5
 
 =head1 OPTIONS
 
@@ -768,12 +767,18 @@ filter_vcf.pl --vcf vcffile1 --vcf vcffile2 --chrom NC_009777 --qual 30 --dp4 75
   --dp4             % reads supoprting SNP [0]
   --dp              Minimum read depth at site [0]
   --dpmax           Maximum read depth at site [100000]
+  --mq              Mapping quality [30]
   --af              Allele frequency cutoff e.g. 0.75 [0]
-  --showfiltered    Also show all the sites removed (in a Filtered subsection at end),
-                       useful to see how well filtering is performing
   --noindels        Filter out INDEL variants
+
+  --behaviour       Behaviour to use (1 - remove sites that fail criteria in single isolate, 2 - set failed sites to N)
+
+  --cpus            Number of CPUs to use
   --phylip          Export data in phylip alignement format (may have to adjust sequence names)
                     (forces --noindels)
+  --dir             Output directory
+  --showfiltered    Also show all the sites removed (in a Filtered subsection at end),
+                       useful to see how well filtering is performing
   --ignorefile      Specify a text file containing coordinates of regions to ignore e.g. mobile elements
   --noheader        Do not print VCF header
   
@@ -786,10 +791,6 @@ filter_vcf.pl --vcf vcffile1 --vcf vcffile2 --chrom NC_009777 --qual 30 --dp4 75
 =item B<-help>
 
 Print a brief help message and exits.
-
-=item B<-man>
-
-Prints the manual page and exits.
 
 =back
 
