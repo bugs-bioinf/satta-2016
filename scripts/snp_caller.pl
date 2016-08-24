@@ -796,8 +796,8 @@ Print a brief help message and exits.
 
 =head1 DESCRIPTION
 
-B<This program> will read the given input file(s) and do something
-useful with the contents thereof.
+B<This program> will read multiple vcf files, filter sites by specified criteria
+then output the file ready for phylogenetic reconstruction.
 
 =head1 AUTHOR
 
@@ -808,7 +808,7 @@ London, UK
 
 =head1 COPYRIGHT
 
-bugasbase_pars.pl is Copyright (c) 2009 Adam Witney. UK. All rights reserved.
+snp_caller.pl is Copyright (c) 2016 Adam Witney. UK. All rights reserved.
 
 You may distribute under the terms of either the GNU General Public License or the Artistic License, as specified in the Perl README file.
 
