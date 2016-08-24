@@ -1,11 +1,12 @@
 
 Code repository for analysis used in paper:
 
-Satta et al (2016)
+[Satta et al (2016)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4988016/)
 
 Clone repository and run
 
 ```
+$ cd data; ./fetch_data.sh; cd ..
 $ make
 ````
 
