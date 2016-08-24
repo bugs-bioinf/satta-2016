@@ -24,7 +24,7 @@ sites   = $(addprefix $(VCF)/$(REF)_, $(addsuffix .all.vcf.gz, $(STRAINS) ) )
 contigs = $(addprefix $(ASSEMBLIES)/, $(STRAINS) )
 rings   = $(addprefix $(CIRCOS)/$(REF)_, $(addsuffix .txt, $(STRAINS) ) )
 
-all: index alignments sites trees
+all: index alignments sites trees circos
 index: $(indexed)
 alignments: $(bam)
 sites: $(sites)
